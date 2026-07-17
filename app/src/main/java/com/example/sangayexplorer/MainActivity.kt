@@ -13,15 +13,38 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.sangayexplorer.ui.theme.SangayExplorerTheme
 import com.example.sangayexplorer.navigation.SangayNavGraph
+import androidx.navigation.compose.rememberNavController
+import com.example.sangayexplorer.ui.components.BottomBar
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
+
             SangayExplorerTheme {
-                SangayNavGraph()
+
+                val navController = rememberNavController()
+
+                Scaffold(
+
+                    bottomBar = {
+
+                        BottomBar(navController)
+
+                    }
+
+                ) { padding ->
+
+                    SangayNavGraph(
+                        navController = navController,
+                        paddingValues = padding
+                    )
+
+                }
+
             }
+
         }
     }
 }
