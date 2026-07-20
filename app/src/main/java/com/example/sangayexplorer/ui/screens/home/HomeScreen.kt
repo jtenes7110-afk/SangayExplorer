@@ -9,6 +9,8 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -19,7 +21,7 @@ fun HomeScreen(
     viewModel: HomeViewModel = viewModel()
 ) {
 
-    val rutas = viewModel.rutas
+    val rutas by viewModel.rutas.collectAsState()
 
     LazyColumn(
         modifier = Modifier.fillMaxSize()
@@ -38,14 +40,26 @@ fun HomeScreen(
 
                     Text(
                         text = ruta.nombre,
-                        style = MaterialTheme.typography.titleMedium
+                        style = MaterialTheme.typography.headlineSmall
                     )
 
-                    Text(ruta.ubicacion)
+                    Text(
+                        text = "📍 ${ruta.ubicacion}",
+                        style = MaterialTheme.typography.bodyLarge
+                    )
 
-                    Text(ruta.duracion)
+                    Text(
+                        text = "⏱ Duración: ${ruta.duracion}"
+                    )
 
-                    Text(ruta.dificultad)
+                    Text(
+                        text = "🥾 Dificultad: ${ruta.dificultad}"
+                    )
+
+                    Text(
+                        text = ruta.descripcion,
+                        modifier = Modifier.padding(top = 8.dp)
+                    )
 
                 }
 

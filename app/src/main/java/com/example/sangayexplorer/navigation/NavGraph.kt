@@ -13,6 +13,13 @@ import com.example.sangayexplorer.ui.screens.home.HomeScreen
 import com.example.sangayexplorer.ui.screens.location.LocationScreen
 import com.example.sangayexplorer.ui.screens.settings.SettingsScreen
 
+import androidx.compose.ui.platform.LocalContext
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.sangayexplorer.SangayExplorerApp
+import com.example.sangayexplorer.data.repository.RutaRepository
+import com.example.sangayexplorer.viewmodel.HomeViewModel
+import com.example.sangayexplorer.viewmodel.HomeViewModelFactory
+
 @Composable
 fun SangayNavGraph(
     navController: NavHostController,
@@ -26,7 +33,21 @@ fun SangayNavGraph(
     ) {
 
         composable(Screen.Home.route) {
-            HomeScreen()
+
+            val context = LocalContext.current
+            val app = context.applicationContext as SangayExplorerApp
+
+            val repository = RutaRepository(app.database.rutaDao())
+
+            val factory = HomeViewModelFactory(repository)
+
+            val viewModel: HomeViewModel = viewModel(
+                factory = factory
+            )
+
+            HomeScreen(
+                viewModel = viewModel
+            )
         }
 
         composable(Screen.Location.route) {
