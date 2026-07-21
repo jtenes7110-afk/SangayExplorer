@@ -8,11 +8,24 @@ class RutaRepository(
     private val rutaDao: RutaDao
 ) {
 
-    fun obtenerRutas(): Flow<List<Ruta>> {
-        return rutaDao.obtenerRutas()
-    }
+    fun obtenerRutas(): Flow<List<Ruta>> =
+        rutaDao.obtenerRutas()
 
-    suspend fun insertarRutas(rutas: List<Ruta>) {
+    suspend fun obtenerRutaPorId(id: Int): Ruta? =
+        rutaDao.obtenerRutaPorId(id)
+
+    suspend fun insertarRuta(ruta: Ruta) =
+        rutaDao.insertarRuta(ruta)
+
+    suspend fun insertarRutas(rutas: List<Ruta>) =
         rutaDao.insertarRutas(rutas)
-    }
+
+    suspend fun actualizarRuta(ruta: Ruta) =
+        rutaDao.actualizarRuta(ruta)
+
+    suspend fun eliminarRuta(ruta: Ruta) =
+        rutaDao.eliminarRuta(ruta)
+
+    suspend fun contarRutas(): Int =
+        rutaDao.contarRutas()
 }

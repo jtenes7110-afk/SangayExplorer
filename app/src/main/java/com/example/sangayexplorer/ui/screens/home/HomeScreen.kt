@@ -15,6 +15,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.sangayexplorer.viewmodel.HomeViewModel
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 
 @Composable
 fun HomeScreen(
@@ -38,9 +43,19 @@ fun HomeScreen(
                     modifier = Modifier.padding(16.dp)
                 ) {
 
+                    Image(
+                        painter = painterResource(id = ruta.imagen),
+                        contentDescription = ruta.nombre,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(200.dp),
+                        contentScale = ContentScale.Crop
+                    )
+
                     Text(
                         text = ruta.nombre,
-                        style = MaterialTheme.typography.headlineSmall
+                        style = MaterialTheme.typography.headlineSmall,
+                        modifier = Modifier.padding(top = 12.dp)
                     )
 
                     Text(
