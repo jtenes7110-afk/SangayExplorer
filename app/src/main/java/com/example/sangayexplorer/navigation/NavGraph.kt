@@ -20,6 +20,9 @@ import com.example.sangayexplorer.data.repository.RutaRepository
 import com.example.sangayexplorer.viewmodel.HomeViewModel
 import com.example.sangayexplorer.viewmodel.HomeViewModelFactory
 
+import androidx.navigation.NavType
+import androidx.navigation.navArgument
+
 @Composable
 fun SangayNavGraph(
     navController: NavHostController,
@@ -37,16 +40,17 @@ fun SangayNavGraph(
             val context = LocalContext.current
             val app = context.applicationContext as SangayExplorerApp
 
-            val repository = RutaRepository(app.database.rutaDao())
+            val factory = HomeViewModelFactory(
+                RutaRepository(app.database.rutaDao())
+            )
 
-            val factory = HomeViewModelFactory(repository)
-
-            val viewModel: HomeViewModel = viewModel(
+            val homeViewModel: HomeViewModel = viewModel(
                 factory = factory
             )
 
             HomeScreen(
-                viewModel = viewModel
+                navController = navController,
+                viewModel = homeViewModel
             )
         }
 
@@ -62,8 +66,21 @@ fun SangayNavGraph(
             SettingsScreen()
         }
 
-        composable(Screen.Detail.route) {
-            DetailScreen()
+        composable(
+            route = Screen.Detail.route,
+            arguments = listOf(
+                navArgument("rutaId") {
+                    type = NavType.IntType
+                }
+            )
+        ) {
+
+            val rutaId = it.arguments?.getInt("rutaId") ?: 0
+
+            DetailScreen(
+                navController = navController,
+                rutaId = rutaId
+            )
         }
     }
 }

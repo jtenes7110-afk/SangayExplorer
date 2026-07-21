@@ -21,9 +21,17 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 
+import androidx.navigation.NavController
+import androidx.compose.foundation.clickable
+import com.example.sangayexplorer.navigation.Screen
+
+import androidx.compose.material3.Button
+import androidx.compose.foundation.layout.Spacer
+
 @Composable
 fun HomeScreen(
-    viewModel: HomeViewModel = viewModel()
+    navController: NavController,
+    viewModel: HomeViewModel
 ) {
 
     val rutas by viewModel.rutas.collectAsState()
@@ -64,17 +72,21 @@ fun HomeScreen(
                     )
 
                     Text(
-                        text = "⏱ Duración: ${ruta.duracion}"
-                    )
-
-                    Text(
                         text = "🥾 Dificultad: ${ruta.dificultad}"
                     )
 
-                    Text(
-                        text = ruta.descripcion,
-                        modifier = Modifier.padding(top = 8.dp)
-                    )
+                    Spacer(modifier = Modifier.height(12.dp))
+
+                    Button(
+                        onClick = {
+                            navController.navigate(
+                                Screen.Detail.createRoute(ruta.id)
+                            )
+                        },
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        Text("Ver detalle")
+                    }
 
                 }
 
