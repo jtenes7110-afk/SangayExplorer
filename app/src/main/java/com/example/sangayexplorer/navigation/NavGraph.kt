@@ -22,6 +22,8 @@ import com.example.sangayexplorer.viewmodel.HomeViewModelFactory
 
 import androidx.navigation.NavType
 import androidx.navigation.navArgument
+import com.example.sangayexplorer.ui.screens.add.AddRouteScreen
+import com.example.sangayexplorer.ui.screens.management.RouteManagementScreen
 
 @Composable
 fun SangayNavGraph(
@@ -33,7 +35,22 @@ fun SangayNavGraph(
         navController = navController,
         startDestination = Screen.Home.route,
         modifier = Modifier.padding(paddingValues)
+
     ) {
+
+        composable(Screen.RouteManagement.route) {
+
+            RouteManagementScreen(
+                navController = navController
+            )
+
+        }
+
+        composable(Screen.AddRoute.route) {
+            AddRouteScreen(
+                navController = navController
+            )
+        }
 
         composable(Screen.Home.route) {
 
@@ -63,7 +80,9 @@ fun SangayNavGraph(
         }
 
         composable(Screen.Settings.route) {
-            SettingsScreen()
+            SettingsScreen(
+                navController = navController
+            )
         }
 
         composable(

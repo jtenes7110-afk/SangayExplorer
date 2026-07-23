@@ -1,4 +1,4 @@
-package com.example.sangayexplorer.ui.screens.settings
+package com.example.sangayexplorer.ui.screens.management
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -15,38 +15,33 @@ import androidx.navigation.NavController
 import com.example.sangayexplorer.navigation.Screen
 
 @Composable
-fun SettingsScreen(
+fun RouteManagementScreen(
     navController: NavController
 ) {
 
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(20.dp),
+            .padding(16.dp),
 
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(20.dp)
+        verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
 
         Text(
-            text = "Configuración",
+            text = "Administración de rutas",
             style = MaterialTheme.typography.headlineMedium
         )
 
         Button(
             onClick = {
-                navController.navigate(Screen.RouteManagement.route)
+                navController.navigate(Screen.AddRoute.route)
             }
         ) {
 
-            Text("Administrar rutas")
+            Text("Agregar nueva ruta")
 
         }
-
-        Text(
-            text = "Sangay Explorer\nVersión 1.0",
-            style = MaterialTheme.typography.bodyMedium
-        )
 
     }
 

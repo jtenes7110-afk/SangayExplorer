@@ -6,8 +6,8 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "rutas")
 data class Ruta(
 
-    @PrimaryKey
-    val id: Int,
+    @PrimaryKey(autoGenerate = true)
+    val id: Int = 0,
 
     val nombre: String,
 
