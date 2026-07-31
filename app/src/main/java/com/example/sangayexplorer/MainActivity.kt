@@ -16,13 +16,24 @@ import com.example.sangayexplorer.navigation.SangayNavGraph
 import androidx.navigation.compose.rememberNavController
 import com.example.sangayexplorer.ui.components.BottomBar
 
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.sangayexplorer.viewmodel.ThemeViewModel
+
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
 
-            SangayExplorerTheme {
+            val themeViewModel: ThemeViewModel = viewModel()
+
+            val darkMode by themeViewModel.darkMode.collectAsState()
+
+            SangayExplorerTheme(
+                darkTheme = darkMode
+            ) {
 
                 val navController = rememberNavController()
 
