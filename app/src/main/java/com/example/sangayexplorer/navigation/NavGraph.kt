@@ -4,26 +4,25 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
+import com.example.sangayexplorer.SangayExplorerApp
+import com.example.sangayexplorer.data.repository.RutaRepository
+import com.example.sangayexplorer.ui.screens.add.AddRouteScreen
 import com.example.sangayexplorer.ui.screens.detail.DetailScreen
+import com.example.sangayexplorer.ui.screens.edit.EditRouteScreen
 import com.example.sangayexplorer.ui.screens.favorites.FavoritesScreen
 import com.example.sangayexplorer.ui.screens.home.HomeScreen
 import com.example.sangayexplorer.ui.screens.location.LocationScreen
+import com.example.sangayexplorer.ui.screens.management.RouteManagementScreen
 import com.example.sangayexplorer.ui.screens.settings.SettingsScreen
-
-import androidx.compose.ui.platform.LocalContext
-import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.sangayexplorer.SangayExplorerApp
-import com.example.sangayexplorer.data.repository.RutaRepository
 import com.example.sangayexplorer.viewmodel.HomeViewModel
 import com.example.sangayexplorer.viewmodel.HomeViewModelFactory
-
-import androidx.navigation.NavType
-import androidx.navigation.navArgument
-import com.example.sangayexplorer.ui.screens.add.AddRouteScreen
-import com.example.sangayexplorer.ui.screens.management.RouteManagementScreen
 
 @Composable
 fun SangayNavGraph(
@@ -50,6 +49,24 @@ fun SangayNavGraph(
             AddRouteScreen(
                 navController = navController
             )
+        }
+
+        composable(
+            route = Screen.Edit.route,
+            arguments = listOf(
+                navArgument("rutaId") {
+                    type = NavType.IntType
+                }
+            )
+        ) {
+
+            val rutaId = it.arguments?.getInt("rutaId") ?: 0
+
+            EditRouteScreen(
+                navController = navController,
+                rutaId = rutaId
+            )
+
         }
 
         composable(Screen.Home.route) {

@@ -28,6 +28,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.material3.Button
 import androidx.navigation.NavController
+import com.example.sangayexplorer.navigation.Screen
+
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 
 @Composable
 fun DetailScreen(
@@ -55,6 +59,7 @@ rutaId: Int
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .verticalScroll(rememberScrollState())
             .padding(16.dp),
         horizontalAlignment = Alignment.Start,
         verticalArrangement = Arrangement.Top
@@ -112,12 +117,39 @@ rutaId: Int
             Spacer(modifier = Modifier.height(24.dp))
 
             Button(
+
                 onClick = {
-                    navController.popBackStack()
+
+                    navController.navigate(
+                        Screen.Edit.createRoute(ruta!!.id)
+                    )
+
                 },
+
                 modifier = Modifier.fillMaxWidth()
+
             ) {
+
+                Text("✏ Editar ruta")
+
+            }
+
+            Spacer(modifier = Modifier.height(12.dp))
+
+            Button(
+
+                onClick = {
+
+                    navController.popBackStack()
+
+                },
+
+                modifier = Modifier.fillMaxWidth()
+
+            ) {
+
                 Text("← Volver")
+
             }
 
         }

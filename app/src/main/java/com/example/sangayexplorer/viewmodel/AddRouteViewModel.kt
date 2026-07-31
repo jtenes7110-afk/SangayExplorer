@@ -1,5 +1,8 @@
 package com.example.sangayexplorer.viewmodel
 
+import androidx.compose.runtime.State
+import androidx.compose.runtime.mutableIntStateOf
+
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.sangayexplorer.R
@@ -10,6 +13,15 @@ import kotlinx.coroutines.launch
 class AddRouteViewModel(
     private val repository: RutaRepository
 ) : ViewModel() {
+
+    private val _imagenSeleccionada =
+        mutableIntStateOf(R.drawable.ic_launcher_foreground)
+
+    val imagenSeleccionada: State<Int> = _imagenSeleccionada
+
+    fun seleccionarImagen(imagenId: Int) {
+        _imagenSeleccionada.intValue = imagenId
+    }
 
     fun guardarRuta(
         nombre: String,
@@ -30,7 +42,7 @@ class AddRouteViewModel(
                 ubicacion = ubicacion,
                 duracion = duracion,
                 dificultad = dificultad,
-                imagen = R.drawable.ic_launcher_foreground
+                imagen = _imagenSeleccionada.intValue
             )
 
             repository.insertarRuta(ruta)

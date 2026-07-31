@@ -4,20 +4,25 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.Text
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
-import androidx.compose.runtime.*
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
-
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.example.sangayexplorer.SangayExplorerApp
+import com.example.sangayexplorer.data.repository.ImageRepository
 import com.example.sangayexplorer.data.repository.RutaRepository
+import com.example.sangayexplorer.ui.components.RouteForm
 import com.example.sangayexplorer.viewmodel.AddRouteViewModel
 import com.example.sangayexplorer.viewmodel.AddRouteViewModelFactory
 
@@ -43,10 +48,16 @@ fun AddRouteScreen(
     var duracion by remember { mutableStateOf("") }
     var dificultad by remember { mutableStateOf("") }
     var descripcion by remember { mutableStateOf("") }
+    var imagenSeleccionada by remember {
+
+        mutableStateOf(ImageRepository.imagenes.first())
+
+    }
 
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .verticalScroll(rememberScrollState())
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
@@ -56,43 +67,46 @@ fun AddRouteScreen(
             style = MaterialTheme.typography.headlineMedium
         )
 
-        OutlinedTextField(
-            value = nombre,
-            onValueChange = { nombre = it },
-            label = { Text("Nombre") }
-        )
+        RouteForm(
 
-        OutlinedTextField(
-            value = ubicacion,
-            onValueChange = { ubicacion = it },
-            label = { Text("Ubicación") }
-        )
+            nombre = nombre,
+            onNombreChange = {
+                nombre = it
+            },
 
-        OutlinedTextField(
-            value = duracion,
-            onValueChange = { duracion = it },
-            label = { Text("Duración") }
-        )
+            ubicacion = ubicacion,
+            onUbicacionChange = {
+                ubicacion = it
+            },
 
-        OutlinedTextField(
-            value = dificultad,
-            onValueChange = { dificultad = it },
-            label = { Text("Dificultad") }
-        )
+            duracion = duracion,
+            onDuracionChange = {
+                duracion = it
+            },
 
-        OutlinedTextField(
-            value = descripcion,
-            onValueChange = { descripcion = it },
-            label = { Text("Descripción") }
-        )
+            dificultad = dificultad,
+            onDificultadChange = {
+                dificultad = it
+            },
 
-        OutlinedButton(
-            onClick = {
-                // Próxima iteración
+            descripcion = descripcion,
+            onDescripcionChange = {
+                descripcion = it
+            },
+
+            imagenSeleccionada = imagenSeleccionada,
+
+            onImagenSeleccionada = { imagen ->
+
+                imagenSeleccionada = imagen
+
+                viewModel.seleccionarImagen(
+                    imagen.imagen
+                )
+
             }
-        ) {
-            Text("Seleccionar imagen")
-        }
+
+        )
 
         Button(
             onClick = {
