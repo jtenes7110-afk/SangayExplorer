@@ -16,7 +16,7 @@ import com.example.sangayexplorer.data.repository.RutaRepository
 import com.example.sangayexplorer.ui.screens.add.AddRouteScreen
 import com.example.sangayexplorer.ui.screens.detail.DetailScreen
 import com.example.sangayexplorer.ui.screens.edit.EditRouteScreen
-import com.example.sangayexplorer.ui.screens.favorites.FavoritesScreen
+import com.example.sangayexplorer.ui.screens.information.InformationScreen
 import com.example.sangayexplorer.ui.screens.home.HomeScreen
 import com.example.sangayexplorer.ui.screens.location.LocationScreen
 import com.example.sangayexplorer.ui.screens.management.RouteManagementScreen
@@ -92,8 +92,8 @@ fun SangayNavGraph(
             LocationScreen()
         }
 
-        composable(Screen.Favorites.route) {
-            FavoritesScreen()
+        composable(Screen.Information.route) {
+            InformationScreen()
         }
 
         composable(Screen.Settings.route) {

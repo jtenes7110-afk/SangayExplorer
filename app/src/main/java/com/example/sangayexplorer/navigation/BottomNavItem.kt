@@ -1,10 +1,10 @@
 package com.example.sangayexplorer.navigation
 
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.filled.Cloud
 import androidx.compose.ui.graphics.vector.ImageVector
 
 data class BottomNavItem(
@@ -25,9 +25,9 @@ val bottomNavItems = listOf(
         icon = Icons.Default.LocationOn
     ),
     BottomNavItem(
-        title = "Favoritos",
-        route = Screen.Favorites.route,
-        icon = Icons.Default.Favorite
+        title = "Clima",
+        route = Screen.Information.route,
+        icon= Icons.Default.Cloud
     ),
     BottomNavItem(
         title = "Configuración",
