@@ -8,6 +8,11 @@ data class CurrentWeather(
     val temperatura: Double,
 
     @SerializedName("wind_speed_10m")
-    val velocidadViento: Double
+    val velocidadViento: Double,
 
+    @SerializedName("relative_humidity_2m")
+    val humedad: Int,
+
+    @SerializedName("weather_code")
+    val codigoClima: Int
 )
