@@ -107,6 +107,80 @@ GPS
 
 ---
 
+# Arquitectura del proyecto
+
+El proyecto sigue una arquitectura MVVM con separación entre la interfaz de usuario, ViewModels, repositorios, acceso a datos local y consumo de servicios REST.
+
+<p align="center">
+  <img src="docs/images/arquitectura.png" width="900">
+</p>
+
+---
+
+# Capturas de la aplicación
+
+## Pantalla principal
+
+<p align="center">
+  <img src="docs/images/home.png" width="350"/>
+</p>
+
+---
+
+## Gestión de rutas
+
+<p align="center">
+  <img src="docs/images/rutas.png" width="350"/>
+</p>
+
+---
+
+## Detalle de una ruta
+
+<p align="center">
+  <img src="docs/images/detalle.png" width="350"/>
+</p>
+
+---
+
+## Agregar una ruta
+
+<p align="center">
+  <img src="docs/images/agregar.png" width="350"/>
+</p>
+
+---
+
+## Editar una ruta
+
+<p align="center">
+  <img src="docs/images/editar.png" width="350"/>
+</p>
+
+---
+
+## Información climática
+
+<p align="center">
+  <img src="docs/images/clima.png" width="350"/>
+</p>
+
+---
+
+## Ubicación y navegación
+
+<p align="center">
+  <img src="docs/images/ubicacion.png" width="350"/>
+</p>
+
+---
+
+## Configuración
+
+<p align="center">
+  <img src="docs/images/configuracion.png" width="350"/>
+</p>
+
 ## Autor
 
 Juan Pablo Tene
